@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./framework/css/bootstrap.css">
+    <title>Document</title>
+</head>
+<body>
+    <div ng-app="myApp">
+        <div ng-controller="FirstCtrl">
+            <input type="text" ng-model="data.message">
+            <h1>{{data.message}}</h1>
+        </div>
+        <div ng-controller="SecondCtrl">
+            <input type="text" ng-model="data.message">
+            <h1>{{data.message}}</h1>
+            <h1>{{data.message | reverse}}</h1>
+        </div>
+        <div ng-controller="listCtrl">
+            <input type="text" ng-model="search.a">
+            <table>
+                <tr ng-repeat="item in list | filter:search">
+                    <td>{{item.a}}</td>
+                    <td>{{item.b}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <script src="./framework/js/angular.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+</html>
