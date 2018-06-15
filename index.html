@@ -27,6 +27,16 @@
                 </tr>
             </table>
         </div>
+        <div enter="bg-success" leave>
+            你本来就很丑
+        </div>
+        <!--directive controller 复用-->
+        <superhero power flash strength>超人的三个力量</superhero>
+        <superhero power flash>超人的两个力量</superhero>
+        <!--directive 的 & 传递-->
+        <div ng-controller="doJob">
+            <kid done="do(job)"></kid> <!--传递给done的仅仅是个引用, do的参数并不重要, 只是个名字, 在directive 中需要将参数名作为键传递一个对象-->
+        </div>
     </div>
     <script src="./framework/js/angular.js"></script>
     <script src="./js/main.js"></script>
