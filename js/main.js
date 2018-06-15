@@ -122,7 +122,7 @@ myApp.directive('kid', function () {
         },
         template: '<input type="text" ng-model="wtf">' +
         '{{wtf}}' +
-        '<div class="button" ng-click="done({job: wtf})">搞定</div>' /*这个done的参数必须传对象, 按照{参数名: 参数名}传递, 对象的键为函数的参数名字*/
+        '<div class="button" ng-click="done({job: wtf})">搞定</div>' /*这个done的参数必须传对象, 对象的键为函数的参数名字*/
     }
 });
 
