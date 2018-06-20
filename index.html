@@ -37,6 +37,17 @@
         <div ng-controller="doJob">
             <kid done="do(job)"></kid> <!--传递给done的仅仅是个引用, do的参数并不重要, 只是个名字, 在directive 中需要将参数名作为键传递一个对象-->
         </div>
+        <stupid></stupid><!-- compile -->
+        <script type="text/ng-template" id="tpl.what_ever_suffix">
+            <div>
+                <!--模板标签必须放到 ng-app 内部, 且本句话(注释?)必须放到模板文件根 div 下面-->
+                <div ng-show="visibility">出现 or 消失 <span ng-transclude></span></div>
+                <button ng-click="clickVisible()">点我显示/隐藏</button>
+            </div>
+        </script>
+        <tpl>
+            真相永远只有一个!
+        </tpl>
     </div>
     <script src="./framework/js/angular.js"></script>
     <script src="./js/main.js"></script>

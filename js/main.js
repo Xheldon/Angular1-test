@@ -1,4 +1,5 @@
 let myApp = angular.module('myApp', []);
+// 数据来源
 myApp.factory('Data', function () {
     return {
         message: 'data 来自 service'
@@ -55,7 +56,7 @@ myApp.directive('leave', function () {
         });
     }
 });
-
+// restrict: E
 myApp.directive('superhero', function () {
     return {
         restrict: 'E',
@@ -79,7 +80,7 @@ myApp.directive('superhero', function () {
         }
     }
 });
-
+// directive 依赖
 myApp.directive('power', function () {
     return {
         restrict: 'A',
@@ -114,6 +115,7 @@ myApp.controller('doJob', function ($scope) {
     }
 });
 
+// 传递引用参数
 myApp.directive('kid', function () {
     return {
         restrict: 'E',
@@ -125,10 +127,43 @@ myApp.directive('kid', function () {
         '<div class="button" ng-click="done({job: wtf})">搞定</div>' /*这个done的参数必须传对象, 对象的键为函数的参数名字*/
     }
 });
+// 演示 compile
+myApp.directive('stupid', function () {
+    let ele = angular.element('<div>{{model}}</div>');
+    return {
+        replace: true,
+        restrict: 'E',
+        template: '<div><input type="text" ng-model="model"></div>',
+        compile: function (tEle) {
+            tEle.append(ele);
+            return function (scope) { // return 的是个 link 函数
+                scope.$watch('model', function (val) {
+                    if (val === 'shit') {
+                        ele.toggleClass('alert-box alert');
+                    }
+                });
+            }
+        }
+    }
+});
 
+// 模板
 
-
-
+myApp.directive('tpl', function ($templateCache) {
+    console.log($templateCache.get('tpl.what_ever_suffix')); // 也可传递给 template 参数
+    return {
+        restrict: 'E',
+        transclude: true,
+        replace: true,
+        templateUrl: 'tpl.what_ever_suffix',
+        link: function (s) {
+            s.visibility = false;
+            s.clickVisible = function () {
+                s.visibility = !s.visibility;
+            }
+        }
+    }
+});
 
 
 
