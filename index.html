@@ -48,6 +48,19 @@
         <tpl>
             真相永远只有一个!
         </tpl>
+        <!--测试factory/provider/config-->
+        <div ng-controller="factoryCtrl">
+            {{game}}
+            {{gameTwo}}
+            {{gameThree}}
+        </div>
+        <!--测试$event/$index-->
+        <div
+                class="button"
+                ng-repeat="item in 'someone'.split('') track by $index"
+                ng-click="ev = $event;">
+            {{$index}} : {{item}} : {{ev.pageX}}
+        </div>
     </div>
     <script src="./framework/js/angular.js"></script>
     <script src="./js/main.js"></script>

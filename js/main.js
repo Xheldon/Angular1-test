@@ -148,7 +148,6 @@ myApp.directive('stupid', function () {
 });
 
 // 模板
-
 myApp.directive('tpl', function ($templateCache) {
     console.log($templateCache.get('tpl.what_ever_suffix')); // 也可传递给 template 参数
     return {
@@ -165,6 +164,47 @@ myApp.directive('tpl', function ($templateCache) {
     }
 });
 
+// factory 用法
+myApp.factory('game', function () {
+    return {
+        name: 'Red Alert'
+    }
+});
 
+// factory 实质上是 provider 的简写
+myApp.provider('gameTwo', function () {
+    return {
+        $get: function () {
+            return {
+                name: 'Blue Alert'
+            }
+        }
+    }
+});
+
+// provider 之所以复杂是因为可以通过 config 单独配置:
+myApp.provider('gameThree', function () {
+    let type;
+    return {
+        setType: function (value) {
+            type = value;
+        },
+        $get: function () {
+            return {
+                name: type + ' Alert'
+            }
+        }
+    }
+});
+
+myApp.config(function (gameThreeProvider) {
+    gameThreeProvider.setType('Yellow');
+});
+
+myApp.controller('factoryCtrl', function ($scope, game, gameTwo, gameThree) {
+    $scope.game = game.name;
+    $scope.gameTwo = gameTwo.name;
+    $scope.gameThree = gameThree.name;
+});
 
 
