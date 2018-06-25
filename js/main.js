@@ -1,4 +1,4 @@
-let myApp = angular.module('myApp', []);
+let myApp = angular.module('myApp', ['ngAnimate']);
 // 数据来源
 myApp.factory('Data', function () {
     return {
@@ -207,4 +207,7 @@ myApp.controller('factoryCtrl', function ($scope, game, gameTwo, gameThree) {
     $scope.gameThree = gameThree.name;
 });
 
-
+// animate 需要样式支持
+ myApp.controller('animateTest', function () {
+     this.toggle = false;
+ });
