@@ -6,7 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
-<body>
-    ???
+<body ng-app="app">
+<%- include ./src/components/header.ejs %>
+<div class="content">
+    <%- include ./src/components/sidebar.ejs %>
+    <ui-view></ui-view>
+</div>
 </body>
 </html>
